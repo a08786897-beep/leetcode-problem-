@@ -1,10 +1,10 @@
 class Solution {
 public:
     int sumOf(vector<int>& nums,int div){
-        long long sum=0;
+        int sum=0;
         int n=nums.size();
         for(int i=0;i<n;i++){
-            sum+=ceil((double)(nums[i]) / (double)(div));
+            sum+=ceil((double)(nums[i])/(double)(div));
         }
         return sum;
     }
