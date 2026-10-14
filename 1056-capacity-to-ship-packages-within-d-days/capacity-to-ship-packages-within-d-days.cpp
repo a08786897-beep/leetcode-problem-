@@ -1,43 +1,41 @@
 class Solution {
 public:
-    int shipWithinDays(vector<int>& weights, int days) {
-        int low = 0, high = 0;
-
-        for (int w : weights) {
-            low = max(low, w);
-            high += w;
+    int sum_max(vector<int>& weights){
+        int n=weights.size();
+        int sum=0;
+        for(int i =0;i<n;i++){
+            sum+=weights[i];
         }
-
-        int res = high;
-
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-
-            if (canship(weights, days, mid)) {
-                res = mid;
-                high = mid - 1;
-            } else {
-                low = mid + 1;
-            }
-        }
-
-        return res;
+        return sum;
     }
-
-private:
-    bool canship(vector<int>& weights, int days, int capacity) {
-        int dayNeed = 1;
-        int currentWeight = 0;
-
-        for (int w : weights) {
-            if (currentWeight + w > capacity) {
-                dayNeed++;
-                currentWeight = 0;
+    int findnoOfdays(vector<int>& weights, int cap){
+        int n=weights.size();
+        int day=1,load=0;
+        for(int i=0;i<n;i++){
+            if(load+weights[i]>cap){
+                day++;
+                load=weights[i];
             }
-
-            currentWeight += w;
+            else{
+                load+=weights[i];
+            }
         }
+        return day;
+        
+    }
+    int shipWithinDays(vector<int>& weights, int days) {
+        int low=*max_element(weights.begin(),weights.end()),high=sum_max(weights);
 
-        return dayNeed <= days;
+        while(low<=high){
+            int mid=low+(high-low)/2;
+            int reqdays=findnoOfdays(weights,mid);
+            if(reqdays<=days){
+
+                high=mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return low;
     }
 };
