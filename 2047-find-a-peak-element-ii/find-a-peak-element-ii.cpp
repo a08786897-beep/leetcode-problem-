@@ -3,6 +3,7 @@ public:
     int findmax(vector<vector<int>>& mat,int n,int m,int col){
         int maxValue=-1;
         int index=-1;
+
         for(int i=0;i<n;i++){
             if(mat[i][col]>maxValue){
                 maxValue=mat[i][col];
@@ -19,6 +20,7 @@ public:
 
         while(low<=high){
             int mid=low+(high-low)/2;
+
             int row=findmax(mat,n,m,mid);
 
             int left=mid-1>=0?mat[row][mid-1]:-1;
@@ -28,7 +30,9 @@ public:
                 return {row,mid};
             }else if(mat[row][mid]<left){
                 high=mid-1;
-            }else low=mid+1;
+            }else{ 
+                low=mid+1;
+            }
         }
         return {-1,-1};
     }
