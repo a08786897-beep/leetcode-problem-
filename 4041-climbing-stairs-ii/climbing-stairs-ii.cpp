@@ -3,7 +3,6 @@ public:
     int climbStairs(int n, vector<int>& costs) {
         vector<int> dp(n+1,0);
 
-
         for(int i=n-1;i>=0;i--){
             int cost=INT_MAX;
 
@@ -20,7 +19,7 @@ public:
             if(j<=n){
                 cost=min(cost,dp[j]+costs[j-1]+(j-i)*(j-i));
             }
-            dp[i] = (cost == INT_MAX) ? 0 :cost;
+            dp[i]=(cost==INT_MAX)?0:cost;
         }
         return dp[0];
     }
