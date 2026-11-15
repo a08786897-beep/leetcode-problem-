@@ -7,6 +7,15 @@
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
 class Solution {
 private: 
     void markParent(TreeNode* root, unordered_map<TreeNode*, TreeNode*>& par) {
@@ -39,7 +48,7 @@ public:
         
         int curr_level = 0;
         while (!q.empty()) {
-            if (curr_level++ == k) break;
+            if (curr_level == k) break;
             int size = q.size();
             for (int i = 0; i < size; i++) {
                 TreeNode* curr = q.front();
@@ -58,6 +67,7 @@ public:
                     vis[par[curr]] = true;
                 }
             }
+            curr_level++;
         }
 
         vector<int> res;
