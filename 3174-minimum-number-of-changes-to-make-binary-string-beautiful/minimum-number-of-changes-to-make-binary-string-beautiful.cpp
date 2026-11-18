@@ -2,6 +2,7 @@ class Solution {
 public:
     int minChanges(string s) {
         int n=s.size();
+
         int changes=0;
 
         for(int i=0;i<n;i+=2){
