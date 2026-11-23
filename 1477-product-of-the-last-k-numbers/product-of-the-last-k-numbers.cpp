@@ -19,7 +19,6 @@ public:
             }
             n++;
         }
-        
     }
     
     int getProduct(int k) {
